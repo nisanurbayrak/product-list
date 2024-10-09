@@ -1,0 +1,30 @@
+<div class="list-group">
+  <a
+    (click)="selectCategory()"
+    class="list-group-item list-group-item-action"
+    [class.active]="displayAll"
+    routerLink="/products"
+  >
+    Tüm Kategoriler
+  </a>
+  <div *ngFor="let category of categories">
+    <a
+      class="list-group-item list-group-item-action"
+      *ngIf="category.isActive; else content"
+      (click)="selectCategory(category)"
+      [class.active]="category == selectedCategory"
+      routerLink="/category/{{ category.id }}"
+    >
+      {{ category.categoryName }}
+    </a>
+
+    <ng-template #content>
+      <a
+        href="#"
+        class="list-group-item list-group-item-action disabled bg-light"
+      >
+        {{ category.categoryName }}</a
+      >
+    </ng-template>
+  </div>
+</div>
