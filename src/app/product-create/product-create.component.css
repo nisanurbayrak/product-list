@@ -1,0 +1,15 @@
+.output {
+  white-space: pre-wrap; /* Preserve whitespace and new lines */
+  /* You can add other styles here if needed */
+}
+
+.output p {
+  display: block; /* Display paragraph as block */
+}
+
+.output b,
+.output strong {
+  font-weight: bold; /* Apply bold style */
+}
+
+/* Add other tag styles as needed */

@@ -1,1 +1,47 @@
-<p>product-create works!</p>
+<h3>Ürün Ekle</h3>
+<form (ngSubmit)="saveProduct(form)" #form="ngForm">
+
+  <div class="alert alert-danger" *ngIf="error">
+    {{error}}
+  </div>
+  <div class="mb-3">
+
+    <label for="name">Adı</label>
+    <input required minlength="5" [(ngModel)]="model.name" type="text" name="name" class="form-control" #name="ngModel">
+    <div class="text-danger mt-1" *ngIf="name.invalid && name.touched">Ürünün ismi en az 5 karakter olmalıdır.</div>
+
+    <label for="price">Fiyatı</label>
+    <input [(ngModel)]="model.price" type="number" required min="0" max="300000" name="price" class="form-control" #price="ngModel">
+    <div class="text-danger mt-1" *ngIf="price.invalid && price.touched">Fiyat bilgisi için negatif değer girmeyiniz.</div>
+
+
+    <label for="image">Görseli</label>
+    <input [(ngModel)]="model.image"type="text" name="image" class="form-control">
+
+    <div class="mb-3">
+      <label for="desc">Açıklaması</label>
+      <editor
+        [(ngModel)]="model.desc"
+        id="desc"
+        name="desc"
+        [init]="{ plugins: ['lists link image table code help wordcount'] }"></editor>
+    </div>
+
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" value="" id="isActive" name="isActive" [(ngModel)]="model.isActive">
+      <label class="form-check-label" for="flexCheckIndeterminate">
+        Mevcut
+      </label>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="categoryId">
+        Kategori
+      </label>
+      <select name="categoryId" id="categoryId" class="form-select" [(ngModel)]="model.categoryId">
+        <option value="Kategori" value="0">Kategori</option>
+        <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Kaydet</button>
+  </div>
+</form>

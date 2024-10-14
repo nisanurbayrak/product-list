@@ -15,7 +15,7 @@
       [class.active]="category == selectedCategory"
       routerLink="/category/{{ category.id }}"
     >
-      {{ category.categoryName }}
+      {{ category.name }}
     </a>
 
     <ng-template #content>
@@ -23,7 +23,7 @@
         href="#"
         class="list-group-item list-group-item-action disabled bg-light"
       >
-        {{ category.categoryName }}</a
+        {{ category.name }}</a
       >
     </ng-template>
   </div>

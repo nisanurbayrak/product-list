@@ -1,9 +1,9 @@
 import { Category } from './category';
 export class CategoryRepo {
   private categories: Category[] = [
-    { id: 1, categoryName: 'Telefon', isActive: true },
-    { id: 2, categoryName: 'Laptop', isActive: true },
-    { id: 3, categoryName: 'TV', isActive: false },
+    { id: 1, name: 'Telefon', isActive: true },
+    { id: 2, name: 'Laptop', isActive: true },
+    { id: 3, name: 'TV', isActive: false },
   ];
 
   getCategory() {

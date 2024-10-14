@@ -10,7 +10,9 @@ import { ProductService } from 'src/app/services/product.service';
   providers: [ProductService],
 })
 export class ProductComponent implements OnInit {
+[x: string]: any;
   product: Product | undefined;
+  loading:boolean=false;
 
   // @Input() prd: Product;
   // @Output() unSelectEvent = new EventEmitter<void>();
@@ -21,9 +23,12 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
+      this.loading=true;
       const id = params['productId'];
       this.productService.getProductById(id).subscribe((result) => {
         this.product = { ...result, id: id };
+      this.loading=false;
+
       });
     });
   }

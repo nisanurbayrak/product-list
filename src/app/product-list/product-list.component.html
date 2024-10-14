@@ -7,7 +7,7 @@
 </div>
 
 <ng-template #noProducts>
-  <div class="alert alert-warning">no product</div>
+  <div class="alert alert-warning" *ngIf="!loading">no product</div>
 </ng-template>
 
 <ng-template #productList1>
@@ -51,3 +51,7 @@
     </div>
   </div>
 </ng-template>
+
+<div class="spinner-border text-info" *ngIf="loading" role="status">
+  <span class="sr-only"></span>
+</div>

@@ -9,9 +9,11 @@ import { ProductComponent } from './product-list/product/product.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductService } from './services/product.service';
 import { ProductCreateComponent } from './product-create/product-create.component';
-
+import { CategoryCreateComponent } from './category-create/category-create.component';
+import { FormsModule } from '@angular/forms';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { AuthComponent } from './auth/auth.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,8 +23,16 @@ import { ProductCreateComponent } from './product-create/product-create.componen
     CategoryListComponent,
     HomeComponent,
     ProductCreateComponent,
+    CategoryCreateComponent,
+    AuthComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    EditorModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -26,6 +26,51 @@
             >Products</a
           >
         </li>
+        <li class="nav-item">
+          <a
+            [routerLink]="['/products/create']"
+            routerLinkActive="router-link-active"
+            class="nav-link"
+            *ngIf="isAdmin"
+            >Add Product</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            [routerLink]="['/categories/create']"
+            routerLinkActive="router-link-active"
+            class="nav-link"
+            *ngIf="isAdmin"
+            >Add Category</a
+          >
+        </li>
+      </ul>
+      <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a
+            [routerLink]="['/auth']"
+            routerLinkActive="router-link-active"
+            class="nav-link"
+            >Login</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a
+            [routerLink]="['/auth']"
+            routerLinkActive="router-link-active"
+            class="nav-link"
+            >Register</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a
+            [routerLink]="['/auth']"
+            routerLinkActive="router-link-active"
+            class="nav-link"
+            (click)="logout()"
+            >Logout</a
+          >
+        </li>
       </ul>
     </div>
   </div>

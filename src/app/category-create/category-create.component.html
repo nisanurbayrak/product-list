@@ -1,0 +1,17 @@
+<h3>Kategori Oluştur</h3>
+<form>
+  <div class="alert alert-danger" *ngIf="error">
+    {{error}}
+  </div>
+<label for="name">Adı</label>
+    <input #name type="text" name="name" class="form-control">
+
+    <div class="form-check mb-3">
+      <input #isActive class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+      <label class="form-check-label" for="flexCheckIndeterminate">
+        Mevcut
+      </label>
+    </div>
+
+    <button class="btn btn-primary" type="button" (click)="saveCategory(id, name, isActive)">Kaydet</button>
+</form>
