@@ -1,3 +1,50 @@
-img {
-  height: 200px;
+body {
+  background-color: #f4f4f9;
+  font-family: "Roboto", sans-serif;
+}
+
+.product-card {
+  border: none;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.product-image-container {
+  overflow: hidden;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.product-image {
+  transition: all 0.3s ease;
+  object-fit: cover;
+}
+/* kkk */
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+.product-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+.product-btn {
+  background-color: #6200ea;
+  border-color: #6200ea;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+.product-btn:hover {
+  background-color: #3700b3;
+  border-color: #3700b3;
+}
+.alert-warning {
+  font-size: 1.1rem;
+  background-color: #ffcc00;
+  border-color: #ffcc00;
+  color: #333;
 }
