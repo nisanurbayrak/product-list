@@ -1,0 +1,17 @@
+.alert {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #6200ea;
+}
+
+.form-control {
+  border-radius: 0.25rem;
+  border: 1px solid #6200ea;
+}
+
+.text-danger {
+  margin-top: 5px;
+}

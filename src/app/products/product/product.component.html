@@ -1,14 +1,16 @@
 <div *ngIf="!loading">
   <div class="card mb-3 border border-warning" *ngIf="product; else noProduct">
-    <div class="row">
-      <div class="col-3">
-        <img src="{{ product.image }}" alt="" class="img-fluid rounded-start" />
+    <div class="row g-0">
+      <div class="col-4">
+        <img
+          src="{{ product.image }}"
+          alt="{{ product.name }}"
+          class="img-fluid rounded-start"
+        />
       </div>
-      <div class="col-9">
+      <div class="col-8">
         <div class="card-body">
-          <p class="cart-title">
-            {{ product.name }}
-          </p>
+          <h5 class="card-title">{{ product.name }}</h5>
           <p class="cart-text" [innerHTML]="product.desc"></p>
         </div>
       </div>

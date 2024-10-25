@@ -1,0 +1,34 @@
+<div
+  *ngIf="loading"
+  class="d-flex justify-content-center align-items-center"
+  style="height: 100vh"
+>
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<div *ngIf="!loading && recentProducts.length > 0">
+  <h3>Son Eklenen Ürünler</h3>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let product of recentProducts">
+      <div class="card mb-3">
+        <img
+          src="{{ product.image }}"
+          class="card-img-top"
+          alt="{{ product.name }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text" [innerHTML]="product.desc"></p>
+
+          <a
+            routerLink="/products/{{ product.id }}"
+            class="btn btn-primary product-btn"
+            >Ürün Detay</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

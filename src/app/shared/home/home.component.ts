@@ -1,4 +1,6 @@
+import { ProductService } from 'src/app/products/product.service';
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/products/product.model';
 
 @Component({
   selector: 'app-home',
@@ -6,8 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
-  loading: boolean = false;
+  constructor(private productService: ProductService) {}
+  loading: boolean = true;
+  recentProducts: Product[] = [];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.fetchRecentProducts(); // Bileşen başlatıldığında ürünleri getir
+  }
+  fetchRecentProducts(): void {
+    this.productService.getRecentProduct().subscribe((products: Product[]) => {
+      this.recentProducts = products;
+      this.loading = false;
+    });
+  }
 }

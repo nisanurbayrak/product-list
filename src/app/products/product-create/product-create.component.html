@@ -4,7 +4,7 @@
     {{ error }}
   </div>
   <div class="mb-3">
-    <label for="name">Adı</label>
+    <label for="name" class="form-label">Adı</label>
     <input
       required
       minlength="5"
@@ -13,12 +13,13 @@
       name="name"
       class="form-control"
       #name="ngModel"
+      placeholder="Ürün ismini girin"
     />
     <div class="text-danger mt-1" *ngIf="name.invalid && name.touched">
       Ürünün ismi en az 5 karakter olmalıdır.
     </div>
 
-    <label for="price">Fiyatı</label>
+    <label for="price" class="form-label">Fiyatı</label>
     <input
       [(ngModel)]="model.price"
       type="number"
@@ -28,22 +29,25 @@
       name="price"
       class="form-control"
       #price="ngModel"
+      placeholder="Ürün fiyatını girin"
     />
     <div class="text-danger mt-1" *ngIf="price.invalid && price.touched">
       Fiyat bilgisi için negatif değer girmeyiniz.
     </div>
 
-    <label for="image">Görseli</label>
+    <label for="image" class="form-label">Görseli</label>
     <input
       [(ngModel)]="model.image"
       type="text"
       name="image"
       class="form-control"
+      placeholder="Görsel URL'sini girin"
     />
 
     <div class="mb-3">
-      <label for="desc">Açıklaması</label>
+      <label for="desc" class="form-label">Açıklaması</label>
       <editor
+        apiKey="m0jou4fhn6rlf6d6gd63m830njmq734cbkb1c9h669tny0qk"
         [(ngModel)]="model.desc"
         id="desc"
         name="desc"
@@ -64,21 +68,27 @@
         Mevcut
       </label>
     </div>
+
     <div class="mb-3">
-      <label class="form-label" for="categoryId"> Kategori </label>
+      <label for="categoryId" class="form-label">Kategori</label>
       <select
         name="categoryId"
         id="categoryId"
         class="form-select"
         [(ngModel)]="model.categoryId"
       >
-        <option value="Kategori" value="0">Kategori</option>
-        <option *ngFor="let category of categories" value="{{ category.id }}">
+        <option value="0" disabled>Kategori Seçin</option>
+        <option *ngFor="let category of categories" [value]="category.id">
           {{ category.name }}
         </option>
       </select>
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
+
+    <button
+      class="btn btn-outline-warning"
+      type="submit"
+      [disabled]="form.invalid"
+    >
       Kaydet
     </button>
   </div>

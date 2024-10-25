@@ -52,4 +52,19 @@ export class ProductService {
       })
     );
   }
+  getRecentProduct(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.url + 'products.json').pipe(
+      map((data) => {
+        const products: Product[] = [];
+
+        for (const key in data) {
+          products.push({ ...data[key], id: key });
+        }
+
+        // Ürünleri ters sırada sıralayıp son 6 ürünü döndür
+        return products.reverse().slice(0, 6);
+      }),
+      delay(1000)
+    );
+  }
 }

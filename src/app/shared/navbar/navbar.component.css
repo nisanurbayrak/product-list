@@ -1,3 +1,21 @@
-p {
-    background-color: goldenrod;
+.custom-navbar {
+  background-color: #6200ea;
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {
+  color: #e1d5f9;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link.active {
+  color: #f4f4f9;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.custom-navbar .navbar-toggler:hover .navbar-toggler-icon {
+  transform: rotate(90deg);
+  transition: transform 0.3s ease;
 }

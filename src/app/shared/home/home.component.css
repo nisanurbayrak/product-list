@@ -1,0 +1,40 @@
+.card {
+  transition: transform 0.2s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 300px;
+}
+.card-img-top {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-text,
+.card-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  flex-grow: 1;
+}
+.product-btn {
+  background-color: #6200ea;
+  border-color: #6200ea;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+.product-btn:hover {
+  background-color: #3700b3;
+  border-color: #3700b3;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}

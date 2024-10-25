@@ -1,12 +1,25 @@
-<h3>Kategori Oluştur</h3>
+<h3 class="mb-4 form-label">Kategori Oluştur</h3>
 <form>
   <div class="alert alert-danger" *ngIf="error">
     {{ error }}
   </div>
-  <label for="name">Adı</label>
-  <input #name type="text" name="name" class="form-control" />
+  <div class="mb-3">
+    <label for="name" class="form-label">Adı</label>
+    <input
+      #name
+      type="text"
+      name="name"
+      class="form-control"
+      placeholder="Kategori adı giriniz."
+      required
+    />
 
-  <button class="btn btn-primary" type="button" (click)="saveCategory(name)">
-    Kaydet
-  </button>
+    <button
+      class="btn btn-outline-warning mt-3"
+      type="button"
+      (click)="saveCategory(name)"
+    >
+      Kaydet
+    </button>
+  </div>
 </form>

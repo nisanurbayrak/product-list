@@ -1,0 +1,21 @@
+.list-group .list-group-item {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+.list-group .list-group-item.active {
+  background-color: #6200ea;
+  color: #e1d5f9;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(99, 0, 234, 0.2);
+}
+.list-group .list-group-item:hover {
+  background-color: #e1d5f9;
+  color: #6200ea;
+  transform: translateY(5px);
+}
