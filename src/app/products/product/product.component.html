@@ -9,18 +9,27 @@
         />
       </div>
       <div class="col-8">
-        <div class="card-body">
+        <div class="card-body d-flex flex-column justify-content-between">
           <h5 class="card-title">{{ product.name }}</h5>
-          <p class="cart-text" [innerHTML]="product.desc"></p>
+          <p class="cart-text" [innerHTML]="product.desc || product.name"></p>
+          <div class="d-grid gap-2 mt-auto">
+            <button
+              (click)="deleteProductById(product.id)"
+              class="btn btn-warning"
+              *ngIf="isAdmin"
+            >
+              Ürünü Sil
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<ng-template #noProduct>
-  <div class="alert alert-warning">no product</div>
-</ng-template>
+  <ng-template #noProduct>
+    <div class="alert alert-warning">no product</div>
+  </ng-template>
 
-<div class="spinner-border text-info" *ngIf="loading" role="status">
-  <span class="sr-only"></span>
+  <div class="spinner-border text-info" *ngIf="loading" role="status">
+    <span class="sr-only"></span>
+  </div>
 </div>

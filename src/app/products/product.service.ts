@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, tap, delay, take, exhaustMap } from 'rxjs';
+import { Observable, map, tap, delay, take, exhaustMap, retry } from 'rxjs';
 import { Product } from './product.model';
 import { AuthService } from '../authentication/auth.service';
 import { environment } from 'src/environments/environment';
@@ -29,17 +29,15 @@ export class ProductService {
 
         return products;
       }),
-      tap((data) => console.log(data)),
+
       delay(1000)
     );
   }
-
   getProductById(id: string): Observable<Product> {
     return this.http
       .get<Product>(this.url + 'products/' + id + '.json')
       .pipe(delay(1000));
   }
-
   createProduct(product: Product): Observable<Product> {
     return this.authService.user.pipe(
       take(1),
@@ -66,5 +64,8 @@ export class ProductService {
       }),
       delay(1000)
     );
+  }
+  deleteProductById(id: string): Observable<void> {
+    return this.http.delete<void>(this.url + 'products/' + id + '.json');
   }
 }

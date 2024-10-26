@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product.model';
-import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../product.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'product-list',
@@ -15,6 +15,7 @@ export class ProductListComponent implements OnInit {
   //compiler option içerisine tsconfigte
   products: Product[] = [];
   loading: boolean = false;
+  private router: Router;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +31,11 @@ export class ProductListComponent implements OnInit {
           this.products = data;
           this.loading = false;
         });
+    });
+  }
+  deleteProductById(id: string) {
+    this.productService.deleteProductById(id).subscribe((data) => {
+      this.router.navigate(['/products']);
     });
   }
 }
