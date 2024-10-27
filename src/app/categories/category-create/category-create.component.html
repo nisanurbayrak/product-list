@@ -1,25 +1,58 @@
-<h3 class="mb-4 form-label">Kategori Oluştur</h3>
+<h3 class="mb-4 form-label">Create Category</h3>
 <form>
   <div class="alert alert-danger" *ngIf="error">
     {{ error }}
   </div>
   <div class="mb-3">
-    <label for="name" class="form-label">Adı</label>
+    <label for="name" class="form-label">Name</label>
     <input
+      [(ngModel)]="model.name"
       #name
       type="text"
       name="name"
       class="form-control"
-      placeholder="Kategori adı giriniz."
+      placeholder="Enter category name."
+      [value]="model.name"
       required
     />
 
     <button
-      class="btn btn-outline-warning mt-3"
+      class="btn btn-outline-warning mr-3"
       type="button"
       (click)="saveCategory(name)"
     >
-      Kaydet
+      Save
+    </button>
+    <button
+      class="btn btn-outline-warning m-3"
+      type="button"
+      (click)="updateCategory()"
+    >
+      Edit
     </button>
   </div>
 </form>
+
+<div>
+  <div class="mb-3" *ngIf="isAdmin">
+    <h3 class="mb-4 form-label">Kategori Sil</h3>
+    <label for="categoryId" class="form-label">Select Category</label>
+    <select
+      id="categoryId"
+      class="form-select"
+      (change)="onCategoryChange($event)"
+    >
+      <option value="" disabled selected>Select Category</option>
+      <option *ngFor="let cat of category" [value]="cat.id">
+        {{ cat.name }}
+      </option>
+    </select>
+    <button
+      class="btn btn-outline-warning mt-3"
+      type="button"
+      (click)="deleteProductById(selectedCategoryId)"
+    >
+      Delete Category
+    </button>
+  </div>
+</div>

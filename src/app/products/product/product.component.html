@@ -9,16 +9,27 @@
         />
       </div>
       <div class="col-8">
-        <div class="card-body d-flex flex-column justify-content-between">
-          <h5 class="card-title">{{ product.name }}</h5>
-          <p class="cart-text" [innerHTML]="product.desc || product.name"></p>
-          <div class="d-grid gap-2 mt-auto">
+        <div
+          class="card-body d-flex flex-column justify-content-center align-items-start"
+          style="height: 100%"
+        >
+          <h5 class="card-title mb-4">{{ product.name }}</h5>
+          <p class="cart-text" [innerHTML]="product.desc"></p>
+          <h6 class="card-text">{{ product.price }} TL</h6>
+          <div class="d-grid gap-2 mt-3 w-100">
             <button
               (click)="deleteProductById(product.id)"
-              class="btn btn-warning"
+              class="btn btn-warning w-100"
               *ngIf="isAdmin"
             >
-              Ürünü Sil
+              Delete Product
+            </button>
+            <button
+              [routerLink]="['/products/update', product.id]"
+              class="btn btn-warning w-100"
+              *ngIf="isAdmin"
+            >
+              Update Product
             </button>
           </div>
         </div>
@@ -26,7 +37,7 @@
     </div>
   </div>
   <ng-template #noProduct>
-    <div class="alert alert-warning">no product</div>
+    <div class="alert alert-warning">No product available</div>
   </ng-template>
 
   <div class="spinner-border text-info" *ngIf="loading" role="status">

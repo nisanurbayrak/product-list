@@ -48,3 +48,10 @@ body {
   border-color: #ffcc00;
   color: #333;
 }
+.product-image-container {
+  position: relative;
+}
+
+.heart-icon {
+  color: red;
+}

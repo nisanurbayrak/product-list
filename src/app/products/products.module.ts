@@ -8,6 +8,7 @@ import { ProductComponent } from './product/product.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { AdminGuard } from '../authentication/admin.guards';
 import { AuthenticationModule } from '../authentication/auth.module';
+import { ProductUpdateComponent } from './product-update/product-update.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       },
       { path: '', component: ProductListComponent },
       { path: ':productId', component: ProductComponent },
+      { path: 'update/:productId', component: ProductUpdateComponent },
       { path: 'category/:categoryId', component: ProductListComponent },
     ],
   },
@@ -30,6 +32,7 @@ const routes: Routes = [
     ProductListComponent,
     ProductComponent,
     ProductCreateComponent,
+    ProductUpdateComponent,
   ],
   imports: [
     CommonModule,

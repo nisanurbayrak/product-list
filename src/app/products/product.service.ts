@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class ProductService {
   private url = environment.databaseUrl;
+  private favoriteProducts: string[] = [];
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -34,9 +35,7 @@ export class ProductService {
     );
   }
   getProductById(id: string): Observable<Product> {
-    return this.http
-      .get<Product>(this.url + 'products/' + id + '.json')
-      .pipe(delay(1000));
+    return this.http.get<Product>(this.url + 'products/' + id + '.json');
   }
   createProduct(product: Product): Observable<Product> {
     return this.authService.user.pipe(
@@ -67,5 +66,22 @@ export class ProductService {
   }
   deleteProductById(id: string): Observable<void> {
     return this.http.delete<void>(this.url + 'products/' + id + '.json');
+  }
+  updateProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>(
+      this.url + 'products/' + product.id + '.json',
+      product
+    );
+  }
+  toggleFavorite(id: string): void {
+    const index = this.favoriteProducts.indexOf(id);
+    if (index === -1) {
+      this.favoriteProducts.push(id);
+    } else {
+      this.favoriteProducts.splice(index, 1);
+    }
+  }
+  isFavorited(id: string): boolean {
+    return this.favoriteProducts.includes(id);
   }
 }

@@ -1,4 +1,4 @@
-<h3 class="form-label">{{ isLoginMode ? "Giriş Yap" : "Hesap Oluştur" }}</h3>
+<h3 class="form-label">{{ isLoginMode ? "Sign in" : "Sign Up" }}</h3>
 <div class="alert alert-danger" *ngIf="error">
   {{ error }}
 </div>
@@ -19,7 +19,7 @@
     </p>
   </div>
   <div class="mb-3">
-    <label for="password" class="form-label">Şifre</label>
+    <label for="password" class="form-label">Password</label>
     <input
       type="password"
       ngModel
@@ -34,14 +34,18 @@
 
   <div class="d-grid gap-2">
     <button type="submit" class="btn btn-warning" [disabled]="form.invalid">
-      {{ isLoginMode ? "Giriş Yap" : "Hesap Oluştur" }}
+      {{ isLoginMode ? "Sign in" : "Sign Up" }}
     </button>
     <button
       type="button"
       class="btn btn-outline-success"
       (click)="toggleMode()"
     >
-      {{ isLoginMode ? "Henüz Bir Hesabım Yok" : "Zaten Bir Hesabım Var" }}
+      {{
+        isLoginMode
+          ? "I don't have an account yet"
+          : "I already have an account"
+      }}
     </button>
   </div>
   <div class="spinner-border text-info" *ngIf="loading" role="status">

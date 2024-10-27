@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/products/product.model';
-import { ProductService } from '../product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProductService } from '../product.service';
+import { Product } from '../product.model';
 import { AuthService } from 'src/app/authentication/auth.service';
 import { environment } from 'src/environments/environment';
+import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css'],
-  providers: [ProductService],
+  selector: 'app-product-update',
+  templateUrl: './product-update.component.html',
+  styleUrls: ['./product-update.component.css'],
 })
-export class ProductComponent implements OnInit {
-  product: Product | undefined;
-  loading: boolean = false;
+export class ProductUpdateComponent implements OnInit {
+  product: Product | null = null;
+  loading: boolean = true;
   isAdmin: boolean = false;
   isAuthenticated: boolean = false;
 
@@ -33,28 +33,27 @@ export class ProductComponent implements OnInit {
         this.loading = false;
       });
     });
+
     this.authService.user.subscribe((user) => {
       this.isAuthenticated = !!user;
       this.isAdmin = user?.email === environment.adminEmail;
     });
   }
-  deleteProductById(id: string) {
-    if (!this.isAuthenticated || !this.isAdmin) {
-      alert('You do not have permission to perform this action.');
-      return;
-    }
 
-    this.productService.deleteProductById(id).subscribe({
-      next: () => {
-        alert('Product has been successfully deleted.');
-        this.router.navigate(['/']);
-      },
-      error: (error) => {
-        console.error('Product deletion failed:', error);
-        alert(
-          'An error occurred while deleting the product. Please try again.'
-        );
-      },
-    });
+  updateProduct(productForm: NgForm) {
+    if (productForm.valid && this.product) {
+      this.loading = true;
+      this.productService.updateProduct(this.product).subscribe({
+        next: () => {
+          this.loading = false;
+          alert('Product updated successfully!');
+          this.router.navigate(['/products']);
+        },
+        error: (err) => {
+          this.loading = false;
+          console.error('Update error', err);
+        },
+      });
+    }
   }
 }

@@ -44,29 +44,15 @@ export class ProductCreateComponent implements OnInit {
       categoryId: this.model.categoryId,
     };
 
-    // const selectedCategory = this.categories.find(
-    //   (c) => c.id === this.model.categoryId
-    // );
-    // console.log(selectedCategory);
-
-    // // if (selectedCategory?.isActive) {
-    // //   if (!selectedCategory.isActive) {
-    // //     selectedCategory.isActive = true;
-    // //     this.categoryService.updateCategory(selectedCategory).subscribe(() => {
-    // //       console.log('kategori aktifleştirildi');
-    // //     });
-    // //   }
-    // // }
-
     const extentions = ['jpeg', 'jpg', 'png'];
     const extention = this.model.image.split('.').pop();
 
     if (extentions.indexOf(extention) == -1) {
-      this.error = 'jpeg, jpg veya png türünde bir görsel yükleyin.';
+      this.error = 'Please upload an image in jpeg, jpg, or png format.';
       return;
     }
     if (this.model.categoryId.value == 0) {
-      this.error = 'Kategori alan boş bırakılamaz.';
+      this.error = 'The category field cannot be left empty.';
       return;
     }
     if (form.valid) {
@@ -74,7 +60,7 @@ export class ProductCreateComponent implements OnInit {
         this.router.navigate(['/products']);
       });
     } else {
-      this.error = 'Formu kontrol ediniz.';
+      this.error = 'Please check the form.';
       return;
     }
   }

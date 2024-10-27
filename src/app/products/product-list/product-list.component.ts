@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product.model';
-import { ProductService } from '../product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
-  providers: [ProductService], //inject edilen değeri burada tanımlıyorsun. hangi compta kullanacaksan ekle.
+  // providers: [ProductService], //inject edilen değeri burada tanımlıyorsun. hangi compta kullanacaksan ekle.
 })
 export class ProductListComponent implements OnInit {
   // selectedProduct: Product | null;
@@ -16,6 +16,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   loading: boolean = false;
   private router: Router;
+  heartedProducts: Set<number> = new Set(); // Kalp durumunu takip etmek için Set
 
   constructor(
     private route: ActivatedRoute,
@@ -37,5 +38,16 @@ export class ProductListComponent implements OnInit {
     this.productService.deleteProductById(id).subscribe((data) => {
       this.router.navigate(['/products']);
     });
+  }
+  toggleHeart(productId: number) {
+    if (this.isHearted(productId)) {
+      this.heartedProducts.delete(productId);
+    } else {
+      this.heartedProducts.add(productId);
+    }
+  }
+
+  isHearted(productId: number): boolean {
+    return this.heartedProducts.has(productId);
   }
 }

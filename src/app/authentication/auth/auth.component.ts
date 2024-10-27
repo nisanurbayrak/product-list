@@ -31,13 +31,13 @@ export class AuthComponent implements OnInit {
     const emailParts = this.model.email.split('@');
 
     if (emailParts.length != 2) {
-      this.errorMsg = 'Geçerli bir e-posta adresi girin.';
+      this.errorMsg = 'Enter a valid email address.';
     } else {
       const emailDomain = emailParts[1];
 
       if (!allowedDomains.includes(emailDomain)) {
         this.errorMsg =
-          'Mail adresi: @gmail.com, @hotmail.com veya @outlook.com uzantılı olmalıdır.';
+          'Email address must be from @gmail.com, @hotmail.com, or @outlook.com domain.';
       } else {
         this.errorMsg = ''; // Hata mesajını temizliyoruz
         const email = form.value.email;
