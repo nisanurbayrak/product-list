@@ -26,27 +26,6 @@
       </div>
 
       <div class="mb-3">
-        <label for="productDesc" class="form-label">Description</label>
-        <textarea
-          class="form-control"
-          id="productDesc"
-          [(ngModel)]="product.desc"
-          name="desc"
-          required
-          rows="5"
-        ></textarea>
-        <div
-          class="text-danger"
-          *ngIf="
-            productForm.controls['desc']?.invalid &&
-            productForm.controls['desc']?.touched
-          "
-        >
-          Description cannot be empty.
-        </div>
-      </div>
-
-      <div class="mb-3">
         <label class="form-label">Price</label>
         <input
           type="number"
@@ -67,6 +46,75 @@
         </div>
       </div>
 
+      <div class="mb-3">
+        <label class="form-label">Image</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="product.image"
+          name="image"
+          required
+        />
+        <div
+          class="text-danger"
+          *ngIf="
+            productForm.controls['image']?.invalid &&
+            productForm.controls['image']?.touched
+          "
+        >
+          Price must be a valid number.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="desc" class="form-label">Description</label>
+        <editor
+          apiKey="m0jou4fhn6rlf6d6gd63m830njmq734cbkb1c9h669tny0qk"
+          [(ngModel)]="product.desc"
+          id="desc"
+          name="desc"
+          [init]="{ plugins: ['lists link image table code help wordcount'] }"
+        ></editor>
+      </div>
+      <div
+        class="text-danger"
+        *ngIf="
+          productForm.controls['desc']?.invalid &&
+          productForm.controls['desc']?.touched
+        "
+      >
+        Description cannot be empty.
+      </div>
+
+      <div class="form-check mb-3">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="isActive"
+          name="isActive"
+          [(ngModel)]="product.isActive"
+        />
+        <label class="form-check-label" for="flexCheckIndeterminate">
+          Available
+        </label>
+      </div>
+
+      <div class="mb-3">
+        <label for="categoryId" class="form-label">Category</label>
+        <select
+          name="categoryId"
+          id="categoryId"
+          class="form-select"
+          [(ngModel)]="product.categoryId"
+        >
+          <option value="0" disabled>Select Category</option>
+          <option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
+
       <button
         type="submit"
         class="btn btn-primary"
@@ -84,6 +132,6 @@
 
 <ng-template #loadingTemplate>
   <div class="spinner-border text-info" role="status">
-    <span class="sr-only">Yükleniyor...</span>
+    <span class="sr-only"></span>
   </div>
 </ng-template>
