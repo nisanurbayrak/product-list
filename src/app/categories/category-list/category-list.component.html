@@ -1,20 +1,46 @@
-<div class="list-group">
-  <a
-    (click)="selectCategory()"
-    class="list-group-item list-group-item-action"
-    [class.active]="displayAll"
-    routerLink="/products"
-  >
-    All Categories
-  </a>
+<div class="container">
+  <div class="list-group d-none d-lg-block mt-3">
+    <a
+      (click)="selectCategory()"
+      class="list-group-item list-group-item-action"
+      [class.active]="displayAll"
+      routerLink="/products"
+    >
+      All Categories
+    </a>
 
-  <a
-    *ngFor="let category of categories"
-    routerLink="/products/category/{{ category.id }}"
-    (click)="selectCategory(category)"
-    class="list-group-item list-group-item-action"
-    [class.active]="category == selectedCategory"
-  >
-    {{ category.name }}
-  </a>
+    <a
+      *ngFor="let category of categories"
+      routerLink="/products/category/{{ category.id }}"
+      (click)="selectCategory(category)"
+      class="list-group-item list-group-item-action"
+      [class.active]="category == selectedCategory"
+    >
+      {{ category.name }}
+    </a>
+  </div>
+</div>
+
+<div class="container d-lg-none bg-light">
+  <div class="list-group justify-content-center">
+    <a
+      style="font-size: 0.8rem; text-align: center; padding: 0.5rem"
+      (click)="selectCategory()"
+      class="list-group-item list-group-item-action"
+      [class.active]="displayAll"
+      routerLink="/products"
+    >
+      Category
+    </a>
+    <a
+      *ngFor="let category of categories"
+      style="font-size: 0.8rem; text-align: center; padding: 0.5rem"
+      routerLink="/products/category/{{ category.id }}"
+      (click)="selectCategory(category)"
+      class="list-group-item list-group-item-action"
+      [class.active]="category == selectedCategory"
+    >
+      {{ category.name }}
+    </a>
+  </div>
 </div>

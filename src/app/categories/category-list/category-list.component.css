@@ -19,3 +19,9 @@
   color: #6200ea;
   transform: translateY(5px);
 }
+.list-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+}
